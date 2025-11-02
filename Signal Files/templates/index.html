@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Chat Viewer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600&family=Fira+Code:wght@400;500&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="container">
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div id="sidebar-header">
+            <div class="header-content">
+                <div class="profile-section">
+                    <div class="profile-avatar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h1 class="sidebar-title">Signal</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="back-btn" class="header-action-btn" style="display:none;" onclick="goBackToMenu()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                    </button>
+                    <button class="header-action-btn" onclick="showCallLogs()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                    </button>
+                    <button class="header-action-btn" onclick="showGroupsInfo()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.5 8H17c-.8 0-1.5.7-1.5 1.5v6c0 .8.7 1.5 1.5 1.5h1v5h2z"/>
+                        </svg>
+                    </button>
+                    <button class="header-action-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L23.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input type="text" id="chat-search-input" placeholder="Search conversations" autocomplete="off">
+                </div>
+            </div>
+        </div>
+        <div id="chat-list"></div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="main">
+        <div id="main-header">
+            <div class="header-info">
+                <div class="chat-avatar-header" id="chat-avatar-header"></div>
+                <div class="chat-details">
+                    <div class="chat-name-header"></div>
+                    <div class="chat-status">Click on a conversation to view messages</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="chat-call-logs-btn" class="header-btn" style="display:none;" onclick="toggleChatCallLogs()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                </button>
+                <button class="header-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L23.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </button>
+                <button class="header-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat-specific call logs popup -->
+        <div id="chat-call-logs-popup" class="chat-call-logs-popup" style="display:none;">
+            <div class="popup-header">
+                <h3 id="popup-chat-name">Call History</h3>
+                <button class="popup-close-btn" onclick="toggleChatCallLogs()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="popup-content">
+                <div id="chat-call-logs-list"></div>
+                <div id="no-call-logs" class="no-call-logs" style="display:none;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="#8696a0">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <p>No call history with this contact</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div id="info-section">
+            <div class="info-box">
+                <div class="signal-logo">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="#3a76f0">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3>Signal Desktop</h3>
+                <p class="info-description">
+                    Private messaging from your desktop.<br>
+                    Send and receive messages with complete privacy and security.
+                </p>
+                <div class="info-features">
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#8696a0">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span>End-to-end encrypted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="messages"></div>
+
+        <!-- Call Logs Panel -->
+        <div id="call-logs-panel" style="display:none;">
+            <div class="panel-header">
+                <button id="back-btn-calls" class="back-btn" onclick="goBackToMenu()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                    Back
+                </button>
+                <h2 class="panel-title">Call History</h2>
+            </div>
+            <div class="panel-content">
+                <div class="call-logs-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-calls">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item missed">
+                        <span class="stat-number" id="missed-calls">0</span>
+                        <span class="stat-label">Missed</span>
+                    </div>
+                    <div class="stat-item outgoing">
+                        <span class="stat-number" id="outgoing-calls">0</span>
+                        <span class="stat-label">Outgoing</span>
+                    </div>
+                    <div class="stat-item incoming">
+                        <span class="stat-number" id="incoming-calls">0</span>
+                        <span class="stat-label">Incoming</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L23.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                        <input type="text" id="call-logs-search" placeholder="Search call logs..." autocomplete="off">
+                    </div>
+                </div>
+                <div id="call-logs-list"></div>
+                <div class="panel-actions">
+                    <button class="action-btn primary" onclick="downloadCallLogs('html')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Export HTML
+                    </button>
+                    <button class="action-btn secondary" onclick="downloadCallLogs('json')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Export JSON
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Groups Info Panel -->
+        <div id="groups-info-panel" style="display:none;">
+            <div class="panel-header">
+                <button id="back-btn-groups" class="back-btn" onclick="goBackToMenu()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                    Back
+                </button>
+                <h2 class="panel-title">Group Info</h2>
+            </div>
+            <div class="panel-content">
+                <div class="groups-content">
+                    <div id="groups-list-panel">
+                        <h3>Groups</h3>
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L23.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                </svg>
+                                <input type="text" id="group-list-search" placeholder="Search groups..." autocomplete="off">
+                            </div>
+                        </div>
+                        <div id="groups-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="hacker-loading" class="hacker-loading-overlay" style="display: none;">
+    <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+    <div class="hacker-container">
+        <div class="hacker-figure">
+            <div class="hacker-head">
+                <div class="hacker-eyes">
+                    <div class="eye left-eye"></div>
+                    <div class="eye right-eye"></div>
+                </div>
+                <div class="hacker-mouth"></div>
+            </div>
+            <div class="hacker-body">
+                <div class="hacker-arms">
+                    <div class="arm left-arm"></div>
+                    <div class="arm right-arm"></div>
+                </div>
+                <div class="hacker-hands">
+                    <div class="hand left-hand"></div>
+                    <div class="hand right-hand"></div>
+                </div>
+            </div>
+            <div class="keyboard">
+                <div class="key"></div>
+                <div class="key"></div>
+                <div class="key"></div>
+                <div class="key"></div>
+                <div class="key"></div>
+            </div>
+        </div>
+        <div class="hacker-text">ANALYZING SIGNAL DATA...</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+                <div class="loading-text">Decrypting Signal Database</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Input Overlay -->
+<div id="input-overlay">
+    <div id="input-box">
+        <div class="signal-logo">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="#3a76f0">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+        </div>
+        <h2>Signal Desktop</h2>
+        <p class="input-subtitle">Enter your Signal data folder path to get started</p>
+        <div class="input-group">
+            <input id="root-folder-input" type="text" placeholder="Paste your Signal data folder path here">
+            <button id="submit-path-btn" onclick="onPathSubmit()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+                Continue
+            </button>
+        </div>
+        <div id="input-error"></div>
+        <div id="after-path-options" style="display:none;">
+            <div class="action-grid">
+                <button class="main-action-btn" onclick="loadChats()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                    </svg>
+                    View All Chats
+                </button>
+                
+                <div class="expandable-btn-container">
+                    <button class="main-action-btn expandable-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download Data
+                    </button>
+                    <div class="expandable-options">
+                        <button class="sub-action-btn" onclick="downloadAll('html')">Download as HTML</button>
+                        <button class="sub-action-btn" onclick="downloadAll('json')">Download as JSON</button>
+                    </div>
+                </div>
+                
+                <button class="main-action-btn" onclick="showGroupsInfo()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.5 8H17c-.8 0-1.5.7-1.5 1.5v6c0 .8.7 1.5 1.5 1.5h1v5h2z"/>
+                    </svg>
+                    View Groups Info
+                </button>
+                
+                <button class="main-action-btn" onclick="showCallLogs()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    View Call Logs
+                </button>
+                
+                <div class="expandable-btn-container">
+                    <button class="main-action-btn expandable-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 0H4v2h16V0zM4 24h16v-2H4v2zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2.75c1.24 0 2.25 1.01 2.25 2.25S13.24 11.25 12 11.25 9.75 10.24 9.75 9s1.01-2.25 2.25-2.25zM17 17H7v-1.5c0-1.67 3.33-2.5 5-2.5s5 .83 5 2.5V17z"/>
+                        </svg>
+                        Download Contacts
+                    </button>
+                    <div class="expandable-options">
+                        <button class="sub-action-btn" onclick="downloadContacts('html')">Download as HTML</button>
+                        <button class="sub-action-btn" onclick="downloadContacts('json')">Download as JSON</button>
+                    </div>
+                </div>
+
+                <button class="main-action-btn" onclick="loadMediaViewer()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/>
+                    </svg>
+                    View Media
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Enhanced structured data display styles */
+        .chat-thread {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .thread-header {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .thread-title {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .thread-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .thread-messages {
+            padding: 1rem;
+        }
+        
+        .chat-message {
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        
+        .chat-message:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .chat-message.even {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .sender-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sender-avatar {
+            font-size: 1.2rem;
+        }
+        
+        .sender-name {
+            font-weight: 600;
+            color: #8b5cf6;
+        }
+        
+        .message-type-badge {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .message-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        
+        .media-indicator {
+            color: #059669;
+        }
+        
+        .message-content {
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .message-attachments {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .attachment {
+            color: #8b5cf6;
+            margin-bottom: 0.25rem;
+        }
+        
+        .show-more-messages {
+            text-align: center;
+            color: #8b5cf6;
+            font-weight: 600;
+            padding: 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        /* Media display enhancements */
+        .media-type-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .media-tab {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        
+        .media-tab.active {
+            background: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+        
+        .media-tab:hover:not(.active) {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: #8b5cf6;
+            color: #8b5cf6;
+        }
+        
+        .media-type-content {
+            display: none;
+        }
+        
+        .media-type-content.active {
+            display: block;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .media-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .media-preview {
+            height: 120px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #9ca3af;
+        }
+        
+        .media-info {
+            padding: 1rem;
+        }
+        
+        .media-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+        
+        .media-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 0.85rem;
+        }
+        
+        .detail-label {
+            color: #6b7280;
+            font-weight: 500;
+            min-width: 80px;
+        }
+        
+        .detail-value {
+            color: #374151;
+            text-align: right;
+            word-break: break-word;
+            max-width: 200px;
+        }
+        
+        .path-text {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.75rem;
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .chat-media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .chat-media-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .chat-media-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .media-filename {
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* Modern Chat Interface Styles */
+        .modern-chat-container {
+            display: flex;
+            height: 600px;
+            background: #f8fafc;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .conversation-list {
+            width: 350px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conversation-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+        }
+
+        .conversation-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .conversation-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .conversation-item:hover {
+            background: #f8fafc;
+        }
+
+        .conversation-item.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.1));
+            border-right: 3px solid #8b5cf6;
+        }
+
+        .conversation-avatar {
+            margin-right: 1rem;
+        }
+
+        .avatar-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .conversation-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .conversation-name {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-preview {
+            color: #6b7280;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.25rem;
+        }
+
+        .conversation-time {
+            color: #9ca3af;
+            font-size: 0.75rem;
+        }
+
+        .message-count {
+            background: #8b5cf6;
+            color: white;
+            border-radius: 10px;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .chat-display-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .conversation-chat {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .conversation-chat.active {
+            display: flex;
+        }
+
+        .chat-header {
+            padding: 1.5rem;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-participant {
+            display: flex;
+            align-items: center;
+        }
+
+        .participant-avatar {
+            margin-right: 1rem;
+        }
+
+        .participant-name {
+            font-weight: 600;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        .participant-status {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .message-wrapper {
+            display: flex;
+            max-width: 70%;
+        }
+
+        .message-wrapper.outgoing {
+            align-self: flex-end;
+            justify-content: flex-end;
+        }
+
+        .message-wrapper.incoming {
+            align-self: flex-start;
+            justify-content: flex-start;
+        }
+
+        .message-bubble {
+            background: white;
+            border-radius: 18px;
+            padding: 0.75rem 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            max-width: 100%;
+        }
+
+        .message-wrapper.outgoing .message-bubble {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .message-wrapper.incoming .message-bubble {
+            background: white;
+            color: #374151;
+        }
+
+        .message-content {
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .message-timestamp {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+
+        .message-wrapper.incoming .message-timestamp {
+            color: #6b7280;
+        }
+
+        /* Message Media Styles */
+        .message-media {
+            margin-top: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .media-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .media-image {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .media-image:hover {
+            transform: scale(1.02);
+        }
+
+        .media-video {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 8px;
+        }
+
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .media-item:hover .media-overlay {
+            opacity: 1;
+        }
+
+        .view-media-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .view-media-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+        }
+
+        .file-icon {
+            font-size: 1.5rem;
+        }
+
+        .media-link {
+            color: #8b5cf6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .media-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Viewer Modal */
+        .media-viewer-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .media-viewer-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .media-viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f8fafc;
+        }
+
+        .media-viewer-header h3 {
+            margin: 0;
+            color: #374151;
+        }
+
+        .close-viewer {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .close-viewer:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .media-viewer-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: #000;
+        }
+
+        .viewer-image, .viewer-video {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 8px;
+        }
+
+        .media-viewer-footer {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .download-media, .copy-url {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .download-media {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+        }
+
+        .download-media:hover {
+            background: #7c3aed;
+        }
+
+        .copy-url {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .copy-url:hover {
+            background: #e5e7eb;
+        }
+
+        /* Enhanced URL action buttons */
+        .url-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .copy-url-btn, .view-url-btn, .preview-btn {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .copy-url-btn {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .copy-url-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .view-url-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .view-url-btn:hover {
+            background: #2563eb;
+        }
+
+        .preview-btn {
+            background: #10b981;
+            color: white;
+        }
+
+        .preview-btn:hover {
+            background: #059669;
+        }
+
+        .clickable {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .clickable:hover {
+            transform: scale(1.02);
+        }
+
+        /* Enhanced media fallback */
+        .media-fallback {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            color: #8b5cf6;
+            font-size: 0.9rem;
+        }
+
+        .file-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #e6e9ec;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .close-media {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .close-media:hover {
+            background: #dc2626;
+        }
+
+        /* Data summary styling */
+        .data-summary {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.05));
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-stats {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .modern-chat-container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .conversation-list {
+                width: 100%;
+                max-height: 300px;
+                overflow-y: auto;
+            }
+            
+            .message-wrapper {
+                max-width: 85%;
+            }
+            
+            .media-image, .media-video {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Instagram Data Extraction Results</h1>
+
+        <div id="loadingIndicator" class="loading-container">
+            <div class="spinner"></div>
+            <div class="loading-text">Extraction in progress... Please wait.</div>
+            <p class="mt-2">This page will automatically update when data is available.</p>
+        </div>
+
+        <div id="errorMessageDiv" class="error-message-container hidden">
+            <h2>Extraction Failed!</h2>
+            <p>There was an error during the data extraction process.</p>
+            <pre id="errorDetailsPre"></pre>
+            <button onclick="window.location.href='/'" class="back-button">Go Back to Home</button>
+        </div>
+
+        <div id="noDataMessage" class="no-data-message hidden">
+            <h2>No Data Found</h2>
+            <p>The extraction completed, but no relevant data could be found or processed.</p>
+            <button onclick="window.location.href='/'" class="back-button">Go Back to Home</button>
+        </div>
+
+        <div id="resultsContent" class="hidden">
+            <!-- Case Information Summary -->
+            <div class="summary-card" style="margin-bottom: 2rem;">
+                <h2 style="color: #8b5cf6; margin-bottom: 1rem;">Case Information</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div><strong>Case Number:</strong> <span id="summaryCaseNumber">N/A</span></div>
+                    <div><strong>Examiner:</strong> <span id="examinerName">N/A</span></div>
+                    <div><strong>Evidence Item:</strong> <span id="evidenceItem">N/A</span></div>
+                    <div><strong>Input Path:</strong> <span id="summaryInputPath">N/A</span></div>
+                    <div><strong>Timestamp:</strong> <span id="summaryTimestamp">N/A</span></div>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div id="summaryCards" class="summary-cards"></div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('overview')">📊 Overview</button>
+                <button class="tab" onclick="showTab('chats')">💬 Chats</button>
+                <button class="tab" onclick="showTab('media')">📷 Media</button>
+                <button class="tab" onclick="showTab('chat_media')">🖼️ Chat Media</button>
+                <button class="tab" onclick="showTab('session_ids')">🔑 Session IDs</button>
+                <button class="tab" onclick="showTab('logged_in_user_profile')">👤 User Profile</button>
+                <button class="tab" onclick="showTab('complete_folder_analysis')">📁 Folder Analysis</button>
+                <button class="tab" onclick="showTab('extraction_report')">📋 Extraction Report</button>
+                <button class="tab" onclick="showTab('master')">🎯 Master Summary</button>
+                <button class="tab" onclick="showTab('raw_json')">🔧 Raw JSON</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="overview" class="tab-content active">
+                <div class="overview-grid">
+                    <div class="overview-section">
+                        <h3>Extraction Status</h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div>
+                                <strong>Module 1 (V5):</strong> 
+                                <span id="v5Status" class="status-badge status-not-run">Not Run</span>
+                            </div>
+                            <div>
+                                <strong>Module 2 (V7):</strong> 
+                                <span id="v7Status" class="status-badge status-not-run">Not Run</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-section">
+                        <h3>Data Summary</h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div><strong>Messages:</strong> <span id="totalMessages">0</span></div>
+                            <div><strong>Media Items:</strong> <span id="totalMedia">0</span></div>
+                            <div><strong>Sessions:</strong> <span id="totalSessions">0</span></div>
+                            <div><strong>Users:</strong> <span id="totalUsers">0</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-section">
+                    <h3>Quick Actions</h3>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button onclick="showTab('chats')" class="btn-secondary">View Messages</button>
+                        <button onclick="showTab('media')" class="btn-secondary">View Media</button>
+                        <button onclick="showTab('session_ids')" class="btn-secondary">View Sessions</button>
+                        <button onclick="showTab('logged_in_user_profile')" class="btn-secondary">View Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chats" class="tab-content">
+                <h2>💬 Chat Messages</h2>
+                <div id="chatsDisplay">Loading...</div>
+            </div>
+
+            <div id="media" class="tab-content">
+                <h2>📷 Media Files</h2>
+                <div id="mediaDisplay">Loading...</div>
+            </div>
+
+            <div id="chat_media" class="tab-content">
+                <h2>🖼️ Chat Media</h2>
+                <div id="chat_mediaDisplay">Loading...</div>
+            </div>
+
+            <div id="session_ids" class="tab-content">
+                <h2>🔑 Session Identifiers</h2>
+                <div id="session_idsDisplay">Loading...</div>
+            </div>
+
+            <div id="logged_in_user_profile" class="tab-content">
+                <h2>👤 User Profile</h2>
+                <div id="logged_in_user_profileDisplay">Loading...</div>
+            </div>
+
+            <div id="complete_folder_analysis" class="tab-content">
+                <h2>📁 Complete Folder Analysis</h2>
+                <div id="complete_folder_analysisDisplay">Loading...</div>
+            </div>
+
+            <div id="extraction_report" class="tab-content">
+                <h2>📋 Extraction Report</h2>
+                <div id="extraction_reportDisplay">Loading...</div>
+            </div>
+
+            <div id="master" class="tab-content">
+                <h2>🎯 Master Summary</h2>
+                <div id="masterDisplay">Loading...</div>
+            </div>
+
+            <div id="raw_json" class="tab-content">
+                <h2>🔧 Complete Raw Data</h2>
+                <div class="json-display">
+                    <pre id="raw_jsonDisplay">Loading...</pre>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <button onclick="window.location.href='/'" class="back-button">Go Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='results.js') }}"></script>
+    <script>
+        // Update status badges based on status
+        function updateStatusBadges() {
+            const v5StatusElement = document.getElementById('v5Status')
+            const v7StatusElement = document.getElementById('v7Status')
+            
+            if (v5StatusElement) {
+                const status = v5StatusElement.textContent.toLowerCase()
+                v5StatusElement.className = `status-badge status-${status === 'success' ? 'success' : status === 'failed' ? 'failed' : 'not-run'}`
+            }
+            
+            if (v7StatusElement) {
+                const status = v7StatusElement.textContent.toLowerCase()
+                v7StatusElement.className = `status-badge status-${status === 'success' ? 'success' : status === 'failed' ? 'failed' : 'not-run'}`
+            }
+        }
+        
+        // Call this after data is loaded
+        document.addEventListener('dataLoaded', updateStatusBadges)
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Data Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Instagram Data Extractor</h1>
+            <p class="subtitle">Extract user data, sessions, and media from Instagram dumps</p>
+            
+            <form id="extractorForm" class="form">
+                <div class="form-group">
+                    <label for="inputPath" class="label">Path to Instagram Data Dump (Folder or ZIP):</label>
+                    <input type="text" id="inputPath" name="inputPath" class="input-field" 
+                           placeholder="e.g., C:\Users\YourName\Downloads\instagram-data" required>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Case Information (Optional)</h3>
+                    <div class="form-group">
+                        <label for="caseNumber" class="label">Case Number:</label>
+                        <input type="text" id="caseNumber" name="caseNumber" class="input-field" 
+                               placeholder="e.g., 2023-001">
+                    </div>
+                    <div class="form-group">
+                        <label for="examinerName" class="label">Examiner Name:</label>
+                        <input type="text" id="examinerName" name="examinerName" class="input-field" 
+                               placeholder="e.g., John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="evidenceItem" class="label">Evidence Item:</label>
+                        <input type="text" id="evidenceItem" name="evidenceItem" class="input-field" 
+                               placeholder="e.g., Mobile Device A">
+                    </div>
+                </div>
+                
+                <button type="submit" id="extractButton" class="btn-primary">
+                    <span id="buttonText">Extract Data</span>
+                    <div id="loader" class="loader hidden"></div>
+                </button>
+            </form>
+            
+            <div id="errorMessage" class="error-message hidden"></div>
+        </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 class="modal-title">Extraction Progress</h2>
+            <div class="modal-loader"></div>
+            <p class="modal-status" id="modalStatusText">Starting extraction...</p>
+            <div class="modal-output">
+                <pre id="modalOutputContent"></pre>
+            </div>
+            <div class="modal-actions">
+                <button id="viewResultsBtn" class="btn-secondary hidden">View Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
