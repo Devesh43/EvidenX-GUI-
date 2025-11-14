@@ -1,10 +1,10 @@
 
 
-# 🧩 **EvidenX (GUI)** — Digital Forensics Visualization Framework
+#  **EvidenX (GUI)** — Digital Forensics Visualization Framework
 
 ---
 
-## 🔍 Overview
+##  Overview
 
 **EvidenX (GUI)** is a **modular, web-based digital forensics visualization framework** designed to process and analyze **rooted Android data dumps** from applications such as **WhatsApp**, **Signal**, and **Instagram**.
 
@@ -13,14 +13,14 @@ EvidenX (GUI) transforms forensic dumps into a navigable dashboard, allowing inv
 
 ---
 
-## 🧠 Core Vision
+##  Core Vision
 
 > Digital evidence shouldn’t just be extracted — it should be **experienced**.
 > EvidenX (GUI) reimagines forensic reporting through interactive exploration, bridging the gap between **technical data** and **human understanding**.
 
 ---
 
-## ⚙️ Key Capabilities
+##  Key Capabilities
 
 * **Rooted Android Compatibility** — Operates directly on data acquired from rooted Android devices.
 * **Multi-App Integration** — Unified web launcher for WhatsApp, Signal, and Instagram extractors.
@@ -32,7 +32,7 @@ EvidenX (GUI) transforms forensic dumps into a navigable dashboard, allowing inv
 
 ---
 
-## 🧱 System Architecture
+##  System Architecture
 
 ```
 EvidenX(GUI)/
@@ -60,7 +60,7 @@ The `main_launcher.py` serves as the **entry point**, providing a central dashbo
 
 ---
 
-## 🧰 Technology Stack
+##  Technology Stack
 
 | Layer             | Components                                                       |
 | ----------------- | ---------------------------------------------------------------- |
@@ -72,9 +72,9 @@ The `main_launcher.py` serves as the **entry point**, providing a central dashbo
 
 ---
 
-## 🧩 Module Overview
+##  Module Overview
 
-### 🟢 **WhatsApp Extractor**
+###  **WhatsApp Extractor**
 
 * Decrypts `msgstore.db.crypt14/15` databases extracted from rooted devices.
 * Parses chat logs, group structures, calls, and media attachments.
@@ -84,13 +84,13 @@ The `main_launcher.py` serves as the **entry point**, providing a central dashbo
   * Interactive HTML dashboards
 * Provides keyword-based filtering and chronological browsing.
 
-### 🔵 **Signal Extractor**
+###  **Signal Extractor**
 
 * Retrieves AES-GCM encryption keys from Android Keystore.
 * Decrypts SQLCipher-encrypted `signal.db` and reconstructs message histories, calls, and group structures.
 * Visualizes contact networks and message timelines with in-browser filtering.
 
-### 🟣 **Instagram Extractor**
+###  **Instagram Extractor**
 
 * Scans `/data/data/com.instagram.android/` for session IDs, cached user data, and linked profiles.
 * Merges outputs from dual modules (V5 + V7) for a consolidated evidence report.
@@ -98,7 +98,7 @@ The `main_launcher.py` serves as the **entry point**, providing a central dashbo
 
 ---
 
-## 🔐 Data Requirements
+##  Data Requirements
 
 EvidenX (GUI) expects the following **rooted Android filesystem data** for accurate processing:
 
@@ -112,21 +112,21 @@ All data should be extracted in a **read-only, bit-level format** using standard
 
 ---
 
-## 🚀 Execution Guide
+##  Execution Guide
 
-### 1️⃣ Install Dependencies
+###  Install Dependencies
 
 ```bash
 python setup_dependencies.py
 ```
 
-### 2️⃣ Launch EvidenX
+###  Launch EvidenX
 
 ```bash
 python main_launcher.py
 ```
 
-### 3️⃣ Access Web Dashboard
+###  Access Web Dashboard
 
 Open the URL shown in your terminal, typically:
 👉 `http://127.0.0.1:5000/`
@@ -135,7 +135,7 @@ Use the **launcher interface** to start extraction modules for WhatsApp, Signal,
 
 ---
 
-## 🧾 Output Structure
+##  Output Structure
 
 ```
 EvidenX_Output/
