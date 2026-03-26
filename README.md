@@ -13,7 +13,7 @@ EvidenX (GUI) transforms forensic dumps into a navigable dashboard, allowing inv
 
 ---
 
-##  Core Vision
+##  Vision
 
 > Digital evidence shouldn’t just be extracted — it should be **experienced**.
 > EvidenX (GUI) reimagines forensic reporting through interactive exploration, bridging the gap between **technical data** and **human understanding**.
