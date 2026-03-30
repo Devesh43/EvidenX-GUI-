@@ -86,7 +86,7 @@ The `main_launcher.py` serves as the **entry point**, providing a central dashbo
 
 ###  **Signal Extractor**
 
-* Retrieves AES-GCM encryption keys from Android Keystore.
+* Retrieves AES-GCM encryption keys from the Android Keystore.
 * Decrypts SQLCipher-encrypted `signal.db` and reconstructs message histories, calls, and group structures.
 * Visualizes contact networks and message timelines with in-browser filtering.
 
