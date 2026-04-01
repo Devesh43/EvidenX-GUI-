@@ -9,7 +9,7 @@
 **EvidenX (GUI)** is a **modular, web-based digital forensics visualization framework** designed to process and analyze **rooted Android data dumps** from applications such as **WhatsApp**, **Signal**, and **Instagram**.
 
 Built on **Python (Flask)** and **modern web technologies**, it automates the **decryption**, **data parsing**, and **interactive visualization** of encrypted mobile application artifacts.
-EvidenX (GUI) transforms forensic dumps into a navigable dashboard, allowing investigators to explore messages, contacts, calls, and media files through an intuitive browser interface thus combining the depth of forensic extraction with the accessibility of visual analytics.
+EvidenX (GUI) transforms forensic dumps into a navigable dashboard, thus allowing investigators to explore messages, contacts, calls, and media files through an intuitive browser interface thus combining the depth of forensic extraction with the accessibility of visual analytics.
 
 ---
 
