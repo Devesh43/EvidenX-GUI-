@@ -82,7 +82,7 @@ def start_signal_server():
             else:
                 print("⚠️ Signal Extractor may not have started properly")
         else:
-            print("❌ Signal Files folder not found")
+            print(" Signal Files folder not found !")
     except Exception as e:
         print(f"❌ Error starting Signal server: {e}")
 
