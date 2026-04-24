@@ -50,9 +50,9 @@ def start_whatsapp_server():
                     print("✅ WhatsApp Extractor started successfully on port 5000")
                     break
             else:
-                print("⚠️ WhatsApp Extractor may not have started properly")
+                print(" WhatsApp Extractor may not have started properly")
         else:
-            print("❌ WhatsApp Files folder not found")
+            print(" WhatsApp Files folder not found")
     except Exception as e:
         print(f"❌ Error starting WhatsApp server: {e}")
 
