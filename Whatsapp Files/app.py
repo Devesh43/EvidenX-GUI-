@@ -750,7 +750,7 @@ def decrypt_database(key_file, encrypted_db, output_db='msgstore.db'):
     if result.returncode != 0:
         print("Decryption failed:", result.stderr)
         raise RuntimeError("Decryption failed.")
-    print("Decryption successful.")
+    print("Decryption is successful.")
     return output_db
 
 @app.route('/')
