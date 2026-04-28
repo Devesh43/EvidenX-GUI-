@@ -308,7 +308,7 @@ def get_group_participants_enhanced(db_path, jid_map, contacts_map):
                 group_participants[group_name] = participants
                 
             except Exception as e:
-                print(f"Error processing group {group_name}: {e}")
+                print(f"Error processing this group called {group_name}: {e}")
                 group_participants[group_name] = []
         
         conn.close()
