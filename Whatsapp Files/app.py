@@ -54,7 +54,7 @@ def extract_media_from_zip(zipf, media_path_in_zip, media_filename):
             shutil.copyfileobj(src, dst)
         return f"/static/media/{safe_filename}"
     except Exception as e:
-        print(f"Failed to extract media {media_filename}: {e}")
+        print(f"Failed to extract the media {media_filename}: {e}")
         return None
 
 # NEW: Media file scanning function
