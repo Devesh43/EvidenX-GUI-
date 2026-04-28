@@ -312,7 +312,7 @@ def get_group_participants_enhanced(db_path, jid_map, contacts_map):
                 group_participants[group_name] = []
         
         conn.close()
-        print(f"Group participant extraction complete - found participants in {len([g for g in group_participants.values() if g])} groups")
+        print(f"Group participant extraction is complete - found participants in {len([g for g in group_participants.values() if g])} groups")
         
     except Exception as e:
         print(f"Error in group participant extraction: {e}")
