@@ -129,7 +129,7 @@ class ComprehensiveSignalExtractor:
                     
                     elif 'thoughtcrime.securesms_preferences.xml' in file:
                         found_files['preferences'].append(file_path)
-                        print(f"✅ Found preferences: {os.path.relpath(file_path, search_path)}")
+                        print(f" Found preferences: {os.path.relpath(file_path, search_path)}")
                     
                     elif 'SignalSecret' in file and 'keystore' in root:
                         found_files['keystore'].append(file_path)
