@@ -93,7 +93,7 @@ class ComprehensiveSignalExtractor:
                                 
                                 if 'decrypted' in file_path.lower():
                                     found_files['decrypted_databases'].append(extracted_path)
-                                    print(f"✅ Found DECRYPTED database: {file_path}")
+                                    print(f" Found DECRYPTED database: {file_path}")
                                 else:
                                     found_files['databases'].append(extracted_path)
                                     print(f"✅ Found encrypted database: {file_path}")
