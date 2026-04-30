@@ -65,7 +65,7 @@ class ComprehensiveSignalExtractor:
             2: "identity_update"
         }
         
-        print(f"📁 Output directory: {self.output_dir.absolute()}")
+        print(f" Output directory: {self.output_dir.absolute()}")
 
     def find_signal_files(self, search_path):
         """Find Signal database files with priority for decrypted ones"""
