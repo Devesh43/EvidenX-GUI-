@@ -274,7 +274,7 @@ class InstagramExtractorV5Enhanced:
             print(f" Extraction directory: {temp_path}")
             
             zip_size = os.path.getsize(zip_path)
-            print(f"📊 ZIP size: {zip_size / (1024*1024):.2f} MB")
+            print(f" ZIP size: {zip_size / (1024*1024):.2f} MB")
             
             extracted_count = 0
             skipped_count = 0
