@@ -309,7 +309,7 @@ class InstagramExtractorV5Enhanced:
                         return temp_path
                         
                 except Exception as e:
-                    print(f"⚠️ pyzipper failed: {e}")
+                    print(f" pyzipper failed: {e}")
             
             # Fallback to standard zipfile
             with zipfile.ZipFile(zip_path, 'r') as zipf:
