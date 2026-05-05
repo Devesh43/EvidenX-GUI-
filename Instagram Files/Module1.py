@@ -265,7 +265,7 @@ class InstagramExtractorV5Enhanced:
     
     def extract_zip_safely(self, zip_path):
         """Extract ZIP file with Windows path length handling"""
-        print(f"📦 Extracting ZIP file: {Path(zip_path).name}")
+        print(f" Extracting ZIP file: {Path(zip_path).name}")
         
         try:
             self.temp_extraction_dir = tempfile.mkdtemp(prefix="instagram_extract_")
