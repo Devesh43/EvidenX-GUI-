@@ -41,7 +41,7 @@ class InstagramExtractorV5Enhanced:
         
         # Handle ZIP file input
         if self.is_zip_file(input_path):
-            print(f"📦 Detected ZIP file: {self.original_input.name}")
+            print(f" Detected ZIP file: {self.original_input.name}")
             self.is_zip_input = True
             self.working_folder = self.extract_zip_safely(input_path)
         else:
