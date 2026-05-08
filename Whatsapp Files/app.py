@@ -321,7 +321,7 @@ def get_group_participants_enhanced(db_path, jid_map, contacts_map):
 
 def extract_call_logs(db_path, jid_map, contacts_map):
     """Extract call logs from database with FIXED call direction logic"""
-    print("📞 Extracting call logs...")
+    print(" Extracting call logs...")
     
     call_logs = []
     
