@@ -509,7 +509,7 @@ def extract_call_logs(db_path, jid_map, contacts_map):
                     print(f"     {key}: {value}")
         
     except Exception as e:
-        print(f"❌ Error extracting call logs: {e}")
+        print(f" Error extracting call logs: {e}")
         print(traceback.format_exc())
     
     return call_logs
