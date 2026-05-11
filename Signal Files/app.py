@@ -106,7 +106,7 @@ class ComprehensiveSignalExtractor:
                             elif ('SignalSecret' in file_path and 'keystore' in file_path):
                                 extracted_path = zip_ref.extract(file_path, temp_dir)
                                 found_files['keystore'].append(extracted_path)
-                                print(f"✅ Found keystore: {file_path}")
+                                print(f" Found keystore: {file_path}")
                                 
                 except Exception as e:
                     print(f"❌ Error reading ZIP: {e}")
