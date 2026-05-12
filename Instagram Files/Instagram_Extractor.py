@@ -46,7 +46,7 @@ class MasterExtractor:
         self.v7_output_dir.mkdir(parents=True, exist_ok=True)
         self.final_output_dir.mkdir(parents=True, exist_ok=True)
 
-        self.output_callback(f"📂 Master output will be saved to: {self.base_output_dir}")
+        self.output_callback(f" Master output will be saved to: {self.base_output_dir}")
 
         # Initialize the consolidated report structure
         self.consolidated_report = {
