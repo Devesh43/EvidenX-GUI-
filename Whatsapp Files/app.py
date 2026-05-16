@@ -355,7 +355,7 @@ def extract_call_logs(db_path, jid_map, contacts_map):
         video_call_col = find_col('video_call', 'is_video', 'video')
         from_me_col = find_col('from_me', 'outgoing')
         
-        print(f"📊 Column mapping:")
+        print(f" Column mapping:")
         print(f"   JID: {jid_col}")
         print(f"   Timestamp: {timestamp_col}")
         print(f"   Duration: {duration_col}")
