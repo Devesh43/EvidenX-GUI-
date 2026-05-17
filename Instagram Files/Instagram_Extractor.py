@@ -193,7 +193,7 @@ class MasterExtractor:
                 return None
                 
         except subprocess.CalledProcessError as e:
-            self.output_callback(f"❌ ERROR running {script_name}:")
+            self.output_callback(f" ERROR running {script_name}:")
             # Print stdout and stderr from the failed process for better debugging
             self.output_callback("--- STDOUT ---")
             self.output_callback(e.stdout)
