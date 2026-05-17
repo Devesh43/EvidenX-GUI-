@@ -144,7 +144,7 @@ class MasterExtractor:
         """
         script_path = Path.cwd() / script_name
         if not script_path.exists():
-            self.output_callback(f"❌ ERROR: Script not found: {script_name}")
+            self.output_callback(f" ERROR: Script not found: {script_name}")
             return None
 
         self.output_callback(f"\n{'='*30}")
