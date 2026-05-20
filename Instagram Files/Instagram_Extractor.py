@@ -179,7 +179,7 @@ class MasterExtractor:
                 cwd=output_dir,
                 env=env # Pass the modified environment to the subprocess
             )
-            self.output_callback(f"✅ {script_name} finished successfully.")
+            self.output_callback(f" {script_name} finished successfully.")
             
             # The scripts create their own subdirectories, we need to find the actual output path
             # The script output is typically in a timestamped folder inside output_dir
