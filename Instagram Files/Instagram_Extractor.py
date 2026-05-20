@@ -201,7 +201,7 @@ class MasterExtractor:
             self.output_callback(e.stderr)
             return None
         except FileNotFoundError:
-            self.output_callback(f"❌ ERROR: 'python' command not found. Is Python installed and in your PATH?")
+            self.output_callback(f" ERROR: 'python' command not found. Is Python installed and in your PATH?")
             return None
         except Exception as e:
             self.output_callback(f"❌ An unexpected error occurred while running {script_name}: {e}")
