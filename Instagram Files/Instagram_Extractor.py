@@ -148,7 +148,7 @@ class MasterExtractor:
             return None
 
         self.output_callback(f"\n{'='*30}")
-        self.output_callback(f"🚀 Running {script_name}...")
+        self.output_callback(f" Running {script_name}...")
         self.output_callback(f"   Input: {self.input_path}")
         self.output_callback(f"   Output: {output_dir}")
         self.output_callback(f"{'='*30}")
