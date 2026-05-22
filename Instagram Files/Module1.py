@@ -351,7 +351,7 @@ class InstagramExtractorV5Enhanced:
     
     def find_instagram_folder(self):
         """Intelligently locate Instagram app folder"""
-        print("\n🎯 Locating Instagram folder...")
+        print("\n Locating Instagram folder...")
         
         candidates = []
         
