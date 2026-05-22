@@ -318,7 +318,7 @@ class InstagramExtractorV5Enhanced:
                 
                 for i, file_info in enumerate(zipf.infolist()):
                     if i % 2000 == 0 and i > 0:
-                        print(f"📊 Progress: {i}/{len(file_list)} ({extracted_count} extracted, {skipped_count} skipped)")
+                        print(f" Progress: {i}/{len(file_list)} ({extracted_count} extracted, {skipped_count} skipped)")
                     
                     if file_info.filename.endswith('/'):
                         continue
