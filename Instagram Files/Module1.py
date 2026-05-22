@@ -391,7 +391,7 @@ class InstagramExtractorV5Enhanced:
                         }
                         score = pattern_scores.get(pattern, 2) + total_files
                         candidates.append((path, score, f"app_folder_{pattern}", []))
-                        print(f"✅ App folder: {path} ({db_count} DBs, {xml_count} XMLs, {html_count} HTMLs)")
+                        print(f" App folder: {path} ({db_count} DBs, {xml_count} XMLs, {html_count} HTMLs)")
         
         # Strategy 3: Look for folders containing Instagram databases
         for db_file in self.working_folder.rglob('*.db'):
