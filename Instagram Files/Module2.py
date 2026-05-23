@@ -384,7 +384,7 @@ class InstagramDataExtractorV7:
                 try:
                     with pyzipper.AESZipFile(zip_path, 'r') as zipf:
                         file_list = zipf.namelist()
-                        print(f"📋 Files in ZIP: {len(file_list)}")
+                        print(f" Files in ZIP: {len(file_list)}")
                         
                         for i, file_info in enumerate(zipf.infolist()):
                             if i % 2000 == 0 and i > 0:
