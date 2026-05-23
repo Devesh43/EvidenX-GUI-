@@ -372,7 +372,7 @@ class InstagramDataExtractorV7:
             self.temp_extraction_dir = tempfile.mkdtemp(prefix="instagram_extract_")
             temp_path = Path(self.temp_extraction_dir)
             
-            print(f"📁 Extraction directory: {temp_path}")
+            print(f" Extraction directory: {temp_path}")
             
             zip_size = os.path.getsize(zip_path)
             print(f"📊 ZIP size: {zip_size / (1024*1024):.2f} MB")
