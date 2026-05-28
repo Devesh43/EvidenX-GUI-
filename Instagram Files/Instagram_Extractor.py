@@ -189,7 +189,7 @@ class MasterExtractor:
                 actual_output = max(subdirs, key=os.path.getmtime)
                 return actual_output
             else:
-                self.output_callback(f"⚠️ No output directory found for {script_name}")
+                self.output_callback(f" No output directory found for {script_name}")
                 return None
                 
         except subprocess.CalledProcessError as e:
