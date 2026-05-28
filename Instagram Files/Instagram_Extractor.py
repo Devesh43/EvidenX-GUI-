@@ -215,7 +215,7 @@ class MasterExtractor:
             with open(file_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except (json.JSONDecodeError, IOError) as e:
-            self.output_callback(f"⚠️ Warning: Could not read or parse JSON file {file_path}. Error: {e}")
+            self.output_callback(f" Warning: Could not read or parse JSON file {file_path}. Error: {e}")
             return None
 
     def _intelligent_merge_profiles(self, v5_profile, v7_profile):
