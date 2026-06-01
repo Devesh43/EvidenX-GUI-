@@ -548,7 +548,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showNotification(`❌ Failed to start ${type.toUpperCase()} Extractor`, true);
+                    showNotification(` Failed to start ${type.toUpperCase()} Extractor`, true);
                     
                     // Reset button
                     button.classList.remove('loading');
