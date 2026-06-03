@@ -125,7 +125,7 @@ class ComprehensiveSignalExtractor:
                             print(f" Found DECRYPTED database: {os.path.relpath(file_path, search_path)}")
                         else:
                             found_files['databases'].append(file_path)
-                            print(f"✅ Found encrypted database: {os.path.relpath(file_path, search_path)}")
+                            print(f" Found encrypted database: {os.path.relpath(file_path, search_path)}")
                     
                     elif 'thoughtcrime.securesms_preferences.xml' in file:
                         found_files['preferences'].append(file_path)
