@@ -133,7 +133,7 @@ class ComprehensiveSignalExtractor:
                     
                     elif 'SignalSecret' in file and 'keystore' in root:
                         found_files['keystore'].append(file_path)
-                        print(f"✅ Found keystore: {os.path.relpath(file_path, search_path)}")
+                        print(f" Found keystore: {os.path.relpath(file_path, search_path)}")
         
         return found_files
 
