@@ -145,7 +145,7 @@ class ComprehensiveSignalExtractor:
             return db_path, 'decrypted'
         
         if found_files['databases'] and found_files['keystore'] and found_files['preferences']:
-            print("🔐 Found encrypted database with keys - attempting decryption...")
+            print(" Found encrypted database with keys - attempting decryption...")
             decrypted_path = self.decrypt_signal_database(
                 found_files['databases'][0],
                 found_files['keystore'][0], 
