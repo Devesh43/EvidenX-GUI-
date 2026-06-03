@@ -109,7 +109,7 @@ class ComprehensiveSignalExtractor:
                                 print(f" Found keystore: {file_path}")
                                 
                 except Exception as e:
-                    print(f"❌ Error reading ZIP: {e}")
+                    print(f" Error reading ZIP: {e}")
         
         # Handle directories
         elif os.path.isdir(search_path):
