@@ -538,7 +538,7 @@ class MasterExtractor:
             sanitized_v7_path = self._sanitize_script(Path(V7_SCRIPT_NAME))
 
             if not sanitized_v5_path or not sanitized_v7_path:
-                self.output_callback("❌ Script sanitization failed. Aborting.")
+                self.output_callback(" Script sanitization failed. Aborting.")
                 self.consolidated_report["issues"].append("Script sanitization failed")
                 return self.consolidated_report
 
