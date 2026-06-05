@@ -320,7 +320,7 @@ class MasterExtractor:
         output_path = self.final_output_dir / filename
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
-        self.output_callback(f"💾 Saved final merged file: {filename}")
+        self.output_callback(f" Saved final merged file: {filename}")
 
     def merge_and_generate_reports(self, v5_path, v7_path):
         """
