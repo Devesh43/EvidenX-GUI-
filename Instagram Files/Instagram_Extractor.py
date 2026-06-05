@@ -351,7 +351,7 @@ class MasterExtractor:
                     elif filename == 'chat_media.json':
                         self.consolidated_report["merged_files"]["chat_media"] = file_data['data']
             else:
-                self.output_callback(f"   ⚠️ V5 file not found, skipping: {filename}")
+                self.output_callback(f"    V5 file not found, skipping: {filename}")
 
         # 2. Handle session_ids.json merging
         self.output_callback("\n   -> Merging session_ids.json from V5 and V7...")
