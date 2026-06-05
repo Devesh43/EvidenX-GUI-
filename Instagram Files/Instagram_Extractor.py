@@ -427,7 +427,7 @@ class MasterExtractor:
         self._save_final_json(final_session_doc, 'session_ids.json')
         self.consolidated_report["merged_files"]["session_ids"] = final_session_doc['data']
         self.consolidated_report["summary"]["total_sessions_found"] = len(merged_sessions_list)
-        self.output_callback("   ✅ Merged session_ids.json saved.")
+        self.output_callback("    Merged session_ids.json saved.")
 
         # 3. Merge common files (logged_in_user_profile, complete_folder_analysis, extraction_report)
         self.output_callback("\n   -> Merging common files...")
