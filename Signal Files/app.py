@@ -229,7 +229,7 @@ class ComprehensiveSignalExtractor:
                     return None
                     
             except Exception as e:
-                print(f"❌ Failed to open decrypted database: {e}")
+                print(f" Failed to open decrypted database: {e}")
                 if os.path.exists(decrypted_path):
                     os.remove(decrypted_path)
                 return None
