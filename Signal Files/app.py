@@ -362,7 +362,7 @@ class ComprehensiveSignalExtractor:
                     print(f"⚠️ Error processing recipient: {e}")
                     continue
             
-            print(f"✅ Extracted {len(self.recipients)} recipients")
+            print(f" Extracted {len(self.recipients)} recipients")
             
         except Exception as e:
             print(f"❌ Error extracting recipients: {e}")
