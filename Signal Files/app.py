@@ -249,7 +249,7 @@ class ComprehensiveSignalExtractor:
             conn.close()
             
             if tables:
-                print(f"✅ Database connection successful - found {len(tables)} tables")
+                print(f" Database connection successful - found {len(tables)} tables")
                 return True
             else:
                 print("❌ Database appears empty")
