@@ -224,7 +224,7 @@ class ComprehensiveSignalExtractor:
                     print(f"✅ Successfully decrypted database ({result[0]} tables)")
                     return decrypted_path
                 else:
-                    print("❌ Decryption failed - no tables found")
+                    print(" Decryption failed - no tables found")
                     os.remove(decrypted_path)
                     return None
                     
