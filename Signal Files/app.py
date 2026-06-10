@@ -156,7 +156,7 @@ class ComprehensiveSignalExtractor:
         
         if found_files['databases']:
             db_path = found_files['databases'][0]
-            print(f"⚠️ Using encrypted database (may not work): {os.path.basename(db_path)}")
+            print(f" Using encrypted database (may not work): {os.path.basename(db_path)}")
             return db_path, 'encrypted'
         
         return None, None
