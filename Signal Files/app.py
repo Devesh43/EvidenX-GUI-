@@ -188,7 +188,7 @@ class ComprehensiveSignalExtractor:
                 print("❌ Could not find encrypted secret in preferences")
                 return None
             
-            print("✅ Found encrypted secret in preferences")
+            print(" Found encrypted secret in preferences")
             
             encrypted_data = base64.b64decode(encrypted_secret)
             
