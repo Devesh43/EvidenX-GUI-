@@ -170,7 +170,7 @@ class ComprehensiveSignalExtractor:
                 keystore_data = f.read()
             
             if len(keystore_data) < 0x3D:
-                print("❌ Keystore file too small")
+                print(" Keystore file too small")
                 return None
             
             userkey = keystore_data[0x2D:0x3D]
