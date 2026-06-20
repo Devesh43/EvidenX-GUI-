@@ -203,7 +203,7 @@ class ComprehensiveSignalExtractor:
             aesgcm = AESGCM(userkey)
             database_key = aesgcm.decrypt(iv, ciphertext + auth_tag, None)
             
-            print("✅ Successfully decrypted database key")
+            print(" Successfully decrypted database key")
             
             decrypted_path = db_path + ".decrypted_temp"
             shutil.copy2(db_path, decrypted_path)
