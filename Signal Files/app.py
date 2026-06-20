@@ -193,7 +193,7 @@ class ComprehensiveSignalExtractor:
             encrypted_data = base64.b64decode(encrypted_secret)
             
             if len(encrypted_data) < 28:
-                print("❌ Encrypted data too short")
+                print(" Encrypted data too short")
                 return None
             
             iv = encrypted_data[:12]
