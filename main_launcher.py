@@ -162,7 +162,7 @@ def open_browser():
 
 if __name__ == '__main__':
     print("=" * 60)
-    print("🔒 IFSO/NCFL Delhi Police Special Cell Data Extractor")
+    print(" IFSO/NCFL Delhi Police Special Cell Data Extractor")
     print("=" * 60)
     print("🚀 Starting Main Launcher...")
     print("🌐 Main Interface: http://localhost:8000")
