@@ -47,7 +47,7 @@ def start_whatsapp_server():
             for i in range(10):  # Try for 10 seconds
                 time.sleep(1)
                 if check_server_status(5000, 'whatsapp'):
-                    print("✅ WhatsApp Extractor started successfully on port 5000")
+                    print(" WhatsApp Extractor started successfully on port 5000")
                     break
             else:
                 print(" WhatsApp Extractor may not have started properly")
