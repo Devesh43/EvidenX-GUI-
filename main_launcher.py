@@ -164,7 +164,7 @@ if __name__ == '__main__':
     print("=" * 60)
     print(" IFSO/NCFL Delhi Police Special Cell Data Extractor")
     print("=" * 60)
-    print("🚀 Starting Main Launcher...")
+    print(" Starting Main Launcher...")
     print("🌐 Main Interface: http://localhost:8000")
     print("📱 WhatsApp Extractor: http://localhost:5000 (starts on demand)")
     print("💬 Signal Extractor: http://localhost:5001 (starts on demand)")
