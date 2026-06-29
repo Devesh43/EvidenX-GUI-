@@ -77,7 +77,7 @@ def start_signal_server():
             for i in range(10):  # Try for 10 seconds
                 time.sleep(1)
                 if check_server_status(5001, 'signal'):
-                    print("✅ Signal Extractor started successfully on port 5001")
+                    print(" Signal Extractor started successfully on port 5001")
                     break
             else:
                 print("⚠️ Signal Extractor may not have started properly")
