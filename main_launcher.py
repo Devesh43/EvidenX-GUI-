@@ -54,7 +54,7 @@ def start_whatsapp_server():
         else:
             print(" WhatsApp Files folder not found")
     except Exception as e:
-        print(f"❌ Error starting WhatsApp server: {e}")
+        print(f" Error starting WhatsApp server: {e}")
 
 def start_signal_server():
     """Start Signal extractor server on port 5001"""
