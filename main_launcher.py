@@ -80,7 +80,7 @@ def start_signal_server():
                     print(" Signal Extractor started successfully on port 5001")
                     break
             else:
-                print("⚠️ Signal Extractor may not have started properly")
+                print(" Signal Extractor may not have started properly")
         else:
             print(" Signal Files folder not found !")
     except Exception as e:
