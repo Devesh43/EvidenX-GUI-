@@ -123,7 +123,7 @@ def index():
 @app.route('/start-whatsapp')
 def start_whatsapp():
     if not server_status['whatsapp']:
-        print("🚀 Starting WhatsApp Extractor...")
+        print(" Starting WhatsApp Extractor...")
         threading.Thread(target=start_whatsapp_server, daemon=True).start()
         return jsonify({'status': 'starting', 'url': 'http://localhost:5000', 'message': 'WhatsApp Extractor is starting...'})
     else:
