@@ -114,7 +114,7 @@ def start_instagram_server():
         else:
             print("❌ Instagram Files folder not found")
     except Exception as e:
-        print(f"❌ Error starting Instagram server: {e}")
+        print(f" Error starting Instagram server: {e}")
 
 @app.route('/')
 def index():
