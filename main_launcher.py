@@ -84,7 +84,7 @@ def start_signal_server():
         else:
             print(" Signal Files folder not found !")
     except Exception as e:
-        print(f"❌ Error starting Signal server: {e}")
+        print(f" Error starting Signal server: {e}")
 
 def start_instagram_server():
     """Start Instagram extractor server on port 5007""" # Changed port to 5007
