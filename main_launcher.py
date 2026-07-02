@@ -110,7 +110,7 @@ def start_instagram_server():
                     print(" Instagram Extractor started successfully on port 5007") # Changed port to 5007
                     break
             else:
-                print("⚠️ Instagram Extractor may not have started properly")
+                print(" Instagram Extractor may not have started properly")
         else:
             print("❌ Instagram Files folder not found")
     except Exception as e:
