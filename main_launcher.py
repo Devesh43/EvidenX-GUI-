@@ -107,7 +107,7 @@ def start_instagram_server():
             for i in range(10):  # Try for 10 seconds
                 time.sleep(1)
                 if check_server_status(5007, 'instagram'): # Changed port to 5007
-                    print("✅ Instagram Extractor started successfully on port 5007") # Changed port to 5007
+                    print(" Instagram Extractor started successfully on port 5007") # Changed port to 5007
                     break
             else:
                 print("⚠️ Instagram Extractor may not have started properly")
