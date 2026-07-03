@@ -132,7 +132,7 @@ def start_whatsapp():
 @app.route('/start-signal')
 def start_signal():
     if not server_status['signal']:
-        print("🚀 Starting Signal Extractor...")
+        print(" Starting Signal Extractor...")
         threading.Thread(target=start_signal_server, daemon=True).start()
         return jsonify({'status': 'starting', 'url': 'http://localhost:5001', 'message': 'Signal Extractor is starting...'})
     else:
