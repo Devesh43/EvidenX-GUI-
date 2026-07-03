@@ -141,7 +141,7 @@ def start_signal():
 @app.route('/start-instagram') # New route for Instagram
 def start_instagram():
     if not server_status['instagram']:
-        print("🚀 Starting Instagram Extractor...")
+        print(" Starting Instagram Extractor...")
         threading.Thread(target=start_instagram_server, daemon=True).start()
         return jsonify({'status': 'starting', 'url': 'http://localhost:5007', 'message': 'Instagram Extractor is starting...'}) # Changed port to 5007
     else:
