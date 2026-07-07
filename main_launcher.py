@@ -168,7 +168,7 @@ if __name__ == '__main__':
     print(" Main Interface: http://localhost:8000")
     print(" WhatsApp Extractor: http://localhost:5000 (starts on demand)")
     print(" Signal Extractor: http://localhost:5001 (starts on demand)")
-    print("📸 Instagram Extractor: http://localhost:5007 (starts on demand)") # Changed port to 5007
+    print(" Instagram Extractor: http://localhost:5007 (starts on demand)") # Changed port to 5007
     print("=" * 60)
     print("✅ Opening browser automatically...")
     print("💡 Click the extractor buttons to launch them in new tabs")
