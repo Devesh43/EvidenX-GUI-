@@ -181,7 +181,7 @@ if __name__ == '__main__':
     try:
         app.run(debug=False, port=8000, host='0.0.0.0', use_reloader=False)
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down launcher...")
+        print("\n Shutting down launcher...")
     except Exception as e:
         print(f"❌ Error starting launcher: {e}")
         input("Press Enter to exit...")
