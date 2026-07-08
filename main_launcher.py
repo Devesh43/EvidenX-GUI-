@@ -171,7 +171,7 @@ if __name__ == '__main__':
     print(" Instagram Extractor: http://localhost:5007 (starts on demand)") # Changed port to 5007
     print("=" * 60)
     print(" Opening browser automatically...")
-    print("💡 Click the extractor buttons to launch them in new tabs")
+    print(" Click the extractor buttons to launch them in new tabs")
     print("=" * 60)
     
     # Start browser opening in background
