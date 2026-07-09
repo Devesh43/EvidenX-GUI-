@@ -141,7 +141,7 @@ class ComprehensiveSignalExtractor:
         """Get the best database to use (prioritize decrypted)"""
         if found_files['decrypted_databases']:
             db_path = found_files['decrypted_databases'][0]
-            print(f"🎉 Using DECRYPTED database: {os.path.basename(db_path)}")
+            print(f" Using DECRYPTED database: {os.path.basename(db_path)}")
             return db_path, 'decrypted'
         
         if found_files['databases'] and found_files['keystore'] and found_files['preferences']:
@@ -174,7 +174,7 @@ class ComprehensiveSignalExtractor:
                 return None
             
             userkey = keystore_data[0x2D:0x3D]
-            print(f"✅ Extracted {len(userkey)} byte key from keystore")
+            print(f" Extracted {len(userkey)} byte key from keystore")
             
             tree = ET.parse(preferences_path)
             root = tree.getroot()
