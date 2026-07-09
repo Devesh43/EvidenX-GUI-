@@ -183,5 +183,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print("\n Shutting down launcher...")
     except Exception as e:
-        print(f"❌ Error starting launcher: {e}")
+        print(f" Error starting launcher: {e}")
         input("Press Enter to exit...")
