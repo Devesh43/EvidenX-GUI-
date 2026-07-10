@@ -284,7 +284,7 @@ class ComprehensiveSignalExtractor:
 
     def extract_recipients(self, cursor):
         """Extract all recipients/contacts with better phone number extraction"""
-        print("👥 Extracting recipients...")
+        print(" Extracting recipients...")
         
         try:
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='recipient'")
