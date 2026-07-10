@@ -256,7 +256,7 @@ class ComprehensiveSignalExtractor:
                 return False
                 
         except Exception as e:
-            print(f"❌ Database connection failed: {e}")
+            print(f" Database connection failed: {e}")
             return False
 
     def decode_base64_message(self, text):
