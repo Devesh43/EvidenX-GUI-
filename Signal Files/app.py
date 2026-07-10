@@ -185,7 +185,7 @@ class ComprehensiveSignalExtractor:
                 break
             
             if not encrypted_secret:
-                print("❌ Could not find encrypted secret in preferences")
+                print(" Could not find encrypted secret in preferences")
                 return None
             
             print(" Found encrypted secret in preferences")
