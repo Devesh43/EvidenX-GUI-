@@ -382,7 +382,7 @@ def extract_call_logs(db_path, jid_map, contacts_map):
         cursor.execute(query)
         rows = cursor.fetchall()
         
-        print(f"📊 Found {len(rows)} call log entries")
+        print(f" Found {len(rows)} call log entries")
         
         for row in rows:
             try:
