@@ -494,7 +494,7 @@ def extract_call_logs(db_path, jid_map, contacts_map):
                 call_logs.append(call_data)
                 
             except Exception as e:
-                print(f"⚠️ Error processing call log entry: {e}")
+                print(f" Error processing call log entry: {e}")
                 continue
         
         conn.close()
