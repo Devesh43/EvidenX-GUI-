@@ -378,7 +378,7 @@ def extract_call_logs(db_path, jid_map, contacts_map):
             return call_logs
         
         query = f"SELECT {', '.join(select_cols)} FROM call_log ORDER BY {timestamp_col or 'ROWID'} DESC"
-        print(f"📊 Executing query: {query}")
+        print(f" Executing query: {query}")
         cursor.execute(query)
         rows = cursor.fetchall()
         
