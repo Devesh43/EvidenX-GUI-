@@ -498,7 +498,7 @@ def extract_call_logs(db_path, jid_map, contacts_map):
                 continue
         
         conn.close()
-        print(f"✅ Successfully extracted {len(call_logs)} call logs")
+        print(f" Successfully extracted {len(call_logs)} call logs")
         
         # Print sample for debugging
         if call_logs:
