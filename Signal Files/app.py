@@ -289,7 +289,7 @@ class ComprehensiveSignalExtractor:
         try:
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='recipient'")
             if not cursor.fetchone():
-                print("⚠️ No recipient table found")
+                print(" No recipient table found")
                 return
             
             cursor.execute("PRAGMA table_info(recipient)")
