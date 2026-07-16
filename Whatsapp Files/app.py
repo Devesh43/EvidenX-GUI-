@@ -1119,7 +1119,7 @@ def generate_call_logs_html(call_logs):
 </head>
 <body>
     <div class="container">
-        <h1>📞 WhatsApp Call Logs</h1>
+        <h1> WhatsApp Call Logs</h1>
         <div class="stats">
             <h3>Total Calls: {len(call_logs)}</h3>
             <p>Export generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
