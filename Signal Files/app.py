@@ -294,7 +294,7 @@ class ComprehensiveSignalExtractor:
             
             cursor.execute("PRAGMA table_info(recipient)")
             columns = [row[1] for row in cursor.fetchall()]
-            print(f"📋 Recipient columns: {columns}")
+            print(f" Recipient columns: {columns}")
             
             cursor.execute("SELECT * FROM recipient")
             rows = cursor.fetchall()
