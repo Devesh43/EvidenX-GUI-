@@ -375,7 +375,7 @@ class ComprehensiveSignalExtractor:
         try:
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='attachment'")
             if not cursor.fetchone():
-                print("⚠️ No attachment table found")
+                print(" No attachment table found")
                 return
             
             cursor.execute("PRAGMA table_info(attachment)")
