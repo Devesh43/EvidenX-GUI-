@@ -299,7 +299,7 @@ class ComprehensiveSignalExtractor:
             cursor.execute("SELECT * FROM recipient")
             rows = cursor.fetchall()
             
-            print(f"📊 Processing {len(rows)} recipients...")
+            print(f" Processing {len(rows)} recipients...")
             
             for row in rows:
                 try:
