@@ -365,7 +365,7 @@ class ComprehensiveSignalExtractor:
             print(f" Extracted {len(self.recipients)} recipients")
             
         except Exception as e:
-            print(f"❌ Error extracting recipients: {e}")
+            print(f" Error extracting recipients: {e}")
             print(traceback.format_exc())
 
     def extract_attachments(self, cursor):
