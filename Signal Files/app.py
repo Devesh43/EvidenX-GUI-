@@ -380,7 +380,7 @@ class ComprehensiveSignalExtractor:
             
             cursor.execute("PRAGMA table_info(attachment)")
             columns = [row[1] for row in cursor.fetchall()]
-            print(f"📋 Attachment columns: {columns}")
+            print(f" Attachment columns: {columns}")
             
             cursor.execute("SELECT * FROM attachment")
             rows = cursor.fetchall()
