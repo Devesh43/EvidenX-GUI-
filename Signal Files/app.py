@@ -461,7 +461,7 @@ class ComprehensiveSignalExtractor:
                 if thread_id and recipient_id:
                     self.threads[thread_id] = recipient_id
             
-            print(f"✅ Mapped {len(self.threads)} threads")
+            print(f" Mapped {len(self.threads)} threads")
             
         except Exception as e:
             print(f"❌ Error extracting threads: {e}")
