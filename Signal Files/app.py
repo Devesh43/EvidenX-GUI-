@@ -370,7 +370,7 @@ class ComprehensiveSignalExtractor:
 
     def extract_attachments(self, cursor):
         """Extract attachment information and link to messages"""
-        print("📎 Extracting attachments...")
+        print(" Extracting attachments...")
         
         try:
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='attachment'")
