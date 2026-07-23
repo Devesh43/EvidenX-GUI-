@@ -523,7 +523,7 @@ class MasterExtractor:
         self._save_final_json(final_master_doc, 'master.json')
         self.consolidated_report["merged_files"]["master"] = final_master_doc['data']
 
-        self.output_callback(f"\n✅ Merging complete. Final report is in: {self.final_output_dir}")
+        self.output_callback(f"\n Merging complete. Final report is in: {self.final_output_dir}")
 
     def run_extraction(self):
         """Execute the extraction and merging process."""
