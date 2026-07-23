@@ -327,7 +327,7 @@ class MasterExtractor:
         Merges the JSON outputs from both scripts into the final report files.
         """
         self.output_callback(f"\n{'='*30}")
-        self.output_callback("🔄 Merging reports and generating final JSON files...")
+        self.output_callback(" Merging reports and generating final JSON files...")
         self.output_callback(f"{'='*30}")
 
         # 1. Copy V5-specific files directly
