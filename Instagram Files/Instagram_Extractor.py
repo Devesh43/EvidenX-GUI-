@@ -573,7 +573,7 @@ class MasterExtractor:
             
         except Exception as e:
             error_msg = f"Master extractor execution failed: {e}\n{traceback.format_exc()}"
-            self.output_callback(f"❌ {error_msg}")
+            self.output_callback(f" {error_msg}")
             self.consolidated_report["issues"].append(f"Master extractor fatal error: {e}")
             return self.consolidated_report
         finally:
