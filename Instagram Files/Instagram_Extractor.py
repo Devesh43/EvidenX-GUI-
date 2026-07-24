@@ -556,7 +556,7 @@ class MasterExtractor:
             if v7_actual_output_dir:
                 self.consolidated_report["v7_report"]["status"] = "success"
             else:
-                self.output_callback("❌ V7 script failed to run.")
+                self.output_callback(" V7 script failed to run.")
                 self.consolidated_report["v7_report"]["status"] = "failed"
                 self.consolidated_report["issues"].append("V7 script execution failed")
 
