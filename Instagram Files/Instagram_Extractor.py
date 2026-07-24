@@ -611,7 +611,7 @@ class MasterExtractor:
                 try:
                     # Try a simple removal first
                     shutil.rmtree(temp_dir)
-                    self.output_callback(f"🗑️ Removed temporary directory: {temp_dir.name}")
+                    self.output_callback(f" Removed temporary directory: {temp_dir.name}")
                 except OSError as e:
                     # If simple removal fails, try alternative approaches
                     self.output_callback(f"   ⚠️ Standard removal failed for {temp_dir.name}, trying alternative cleanup...")
