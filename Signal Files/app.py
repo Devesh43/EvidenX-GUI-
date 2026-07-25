@@ -453,7 +453,7 @@ class ComprehensiveSignalExtractor:
         try:
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='thread'")
             if not cursor.fetchone():
-                print("⚠️ No thread table found")
+                print(" No thread table found")
                 return
             
             cursor.execute("SELECT _id, recipient_id FROM thread")
