@@ -485,7 +485,7 @@ class ComprehensiveSignalExtractor:
         
             cursor.execute(f"PRAGMA table_info({message_table})")
             columns = [row[1] for row in cursor.fetchall()]
-            print(f"📋 Message columns: {columns}")
+            print(f" Message columns: {columns}")
         
             # Find relevant columns
             body_col = None
