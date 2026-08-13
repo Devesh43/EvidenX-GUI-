@@ -341,7 +341,7 @@ class InstagramExtractorV5Enhanced:
             
         except Exception as e:
             error_msg = f"ZIP extraction failed: {e}"
-            print(f"❌ {error_msg}")
+            print(f" {error_msg}")
             self.logger.error(error_msg)
             
             if self.temp_extraction_dir and os.path.exists(self.temp_extraction_dir):
