@@ -305,7 +305,7 @@ class InstagramExtractorV5Enhanced:
                                 if skipped_count <= 5:
                                     print(f"⚠️ Skipped: {file_info.filename[:50]}... ({str(e)[:50]})")
                         
-                        print(f"✅ Extraction complete: {extracted_count} files extracted, {skipped_count} skipped")
+                        print(f" Extraction complete: {extracted_count} files extracted, {skipped_count} skipped")
                         return temp_path
                         
                 except Exception as e:
